@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MyApp.Context.CQRS.Queries.Validators
 {
-    public class RetrieveProductsQueryValidator : AbstractValidator<RetrieveProductsQuery>
+    public class RetrieveProductsQueryValidator : AbstractValidator<RetrieveProductQuery>
     {
         public RetrieveProductsQueryValidator()
         {

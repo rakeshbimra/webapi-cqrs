@@ -6,9 +6,9 @@ using System.Text;
 
 namespace MyApp.Context.CQRS.Queries
 {
-    public class RetrieveProductQueryHandler : IQueryHandler<RetrieveProductsQuery, ProductDto>
+    public class RetrieveProductQueryHandler : IQueryHandler<RetrieveProductQuery, ProductDto>
     {
-        public ProductDto Handle(RetrieveProductsQuery query)
+        public ProductDto Handle(RetrieveProductQuery query)
         {
             throw new NotImplementedException();
         }

@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="NETCore-log4net" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyApp.Context.Common\MyApp.Context.Common.csproj" />
+    <ProjectReference Include="..\MyApp.Context.Contract.CQRS\MyApp.Context.Contract.CQRS.csproj" />
+    <ProjectReference Include="..\MyApp.Context.CQRS.Commands\MyApp.Context.CQRS.Commands.csproj" />
+    <ProjectReference Include="..\MyApp.Context.CQRS.Queries\MyApp.Context.CQRS.Queries.csproj" />
+    <ProjectReference Include="..\MyApp.Context.SimpleInjector\MyApp.Context.SimpleInjector.csproj" />
+    <ProjectReference Include="..\MyApp.WebApi.Contract\MyApp.WebApi.Contract.csproj" />
   </ItemGroup>
 
 </Project>

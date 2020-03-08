@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyApp.Context.Contract.CQRS.Queries
 {
-    public class RetrieveProductsQuery : IQuery<ProductDto>
+    public class RetrieveProductQuery : IQuery<ProductDto>
     {
         public Guid ProductId { get; set; }
     }
