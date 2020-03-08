@@ -21,23 +21,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.Common.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.Domain.Tests", "MyApp.Context.Domain.Tests\MyApp.Context.Domain.Tests.csproj", "{D669993D-91F8-4491-B8EB-30CDA25F5009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.CQRS.Commands", "MyApp.Context.CQRS.Commands\MyApp.Context.CQRS.Commands.csproj", "{4D5701C1-B776-4A2B-9D35-9FDD09772A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.CQRS.Commands", "MyApp.Context.CQRS.Commands\MyApp.Context.CQRS.Commands.csproj", "{4D5701C1-B776-4A2B-9D35-9FDD09772A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.CQRS.Queries", "MyApp.Context.CQRS.Queries\MyApp.Context.CQRS.Queries.csproj", "{B887A06B-C075-457A-8E86-277BB4747F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.CQRS.Queries", "MyApp.Context.CQRS.Queries\MyApp.Context.CQRS.Queries.csproj", "{B887A06B-C075-457A-8E86-277BB4747F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.CQRS.Commands.Tests", "MyApp.Context.CQRS.Commands.Tests\MyApp.Context.CQRS.Commands.Tests.csproj", "{F2BF8DBB-061E-42FD-927F-8B026EC5F2E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.CQRS.Commands.Tests", "MyApp.Context.CQRS.Commands.Tests\MyApp.Context.CQRS.Commands.Tests.csproj", "{F2BF8DBB-061E-42FD-927F-8B026EC5F2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.CQRS.Queries.Tests", "MyApp.Context.CQRS.Queries.Tests\MyApp.Context.CQRS.Queries.Tests.csproj", "{5AB0ACA2-084B-4704-BFC7-057E9008FA98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.CQRS.Queries.Tests", "MyApp.Context.CQRS.Queries.Tests\MyApp.Context.CQRS.Queries.Tests.csproj", "{5AB0ACA2-084B-4704-BFC7-057E9008FA98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.Contract.CQRS", "MyApp.Context.Contract.CQRS\MyApp.Context.Contract.CQRS.csproj", "{4949C258-D591-45B2-908D-E5AAA41FB5BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.Contract.CQRS", "MyApp.Context.Contract.CQRS\MyApp.Context.Contract.CQRS.csproj", "{4949C258-D591-45B2-908D-E5AAA41FB5BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.Contract.CQRS.Tests", "MyApp.Context.Contract.CQRS.Tests\MyApp.Context.Contract.CQRS.Tests.csproj", "{3DD14C19-8F93-437B-A06D-634452106C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.Context.Contract.CQRS.Tests", "MyApp.Context.Contract.CQRS.Tests\MyApp.Context.Contract.CQRS.Tests.csproj", "{3DD14C19-8F93-437B-A06D-634452106C3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.WebApi.Contract", "MyApp.WebApi.Contract\MyApp.WebApi.Contract.csproj", "{946E5D37-4AD4-436D-B10D-71483B9F527A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.WebApi.Contract", "MyApp.WebApi.Contract\MyApp.WebApi.Contract.csproj", "{946E5D37-4AD4-436D-B10D-71483B9F527A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.WebApi", "MyApp.WebApi\MyApp.WebApi.csproj", "{167841E7-809F-4824-811B-ABDC0B7C2141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.WebApi", "MyApp.WebApi\MyApp.WebApi.csproj", "{167841E7-809F-4824-811B-ABDC0B7C2141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.WebApi.Tests", "MyApp.WebApi.Tests\MyApp.WebApi.Tests.csproj", "{74D0BE12-B397-41BE-8B32-39E2730AEB88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApp.WebApi.Tests", "MyApp.WebApi.Tests\MyApp.WebApi.Tests.csproj", "{74D0BE12-B397-41BE-8B32-39E2730AEB88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp.Context.SimpleInjector.Tests", "MyApp.Context.SimpleInjector.Tests\MyApp.Context.SimpleInjector.Tests.csproj", "{B7074BD4-F2DF-4996-898C-EA1E445FF718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,10 @@ Global
 		{74D0BE12-B397-41BE-8B32-39E2730AEB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D0BE12-B397-41BE-8B32-39E2730AEB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D0BE12-B397-41BE-8B32-39E2730AEB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7074BD4-F2DF-4996-898C-EA1E445FF718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7074BD4-F2DF-4996-898C-EA1E445FF718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7074BD4-F2DF-4996-898C-EA1E445FF718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7074BD4-F2DF-4996-898C-EA1E445FF718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +128,7 @@ Global
 		{946E5D37-4AD4-436D-B10D-71483B9F527A} = {F7689A0C-2174-46F4-A822-2C57042B4EB1}
 		{167841E7-809F-4824-811B-ABDC0B7C2141} = {F7689A0C-2174-46F4-A822-2C57042B4EB1}
 		{74D0BE12-B397-41BE-8B32-39E2730AEB88} = {F851369F-8700-4395-B07A-B4BDAB096F87}
+		{B7074BD4-F2DF-4996-898C-EA1E445FF718} = {B7CEDD0B-F867-47C4-BBD1-A4E4AAD2150A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF86531D-D6ED-4610-9A6D-08A55004046C}

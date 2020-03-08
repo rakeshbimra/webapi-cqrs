@@ -1,7 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="SimpleInjector" Version="4.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyApp.Context.CQRS.Commands\MyApp.Context.CQRS.Commands.csproj" />
+    <ProjectReference Include="..\MyApp.Context.CQRS.Queries\MyApp.Context.CQRS.Queries.csproj" />
+    <ProjectReference Include="..\MyApp.Context.Domain\MyApp.Context.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

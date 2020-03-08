@@ -18,9 +18,11 @@ using MyApp.WebApi.RequestValidators;
 
 namespace MyApp.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/product")]
     public class ProductController : BaseController
     {
+        public const string RouteNameGetProductById = "GetProductById";
+
         private static ILog _logger = LogManager.GetLogger(typeof(ProductController));
 
         internal IQueryHandler<RetrieveProductQuery, ProductDto> _retrieveProductQueryHandler;
@@ -36,26 +38,33 @@ namespace MyApp.WebApi.Controllers
             _addProductCommandHandler = addProductCommandHandler;
         }
 
-        [Route("add")]
-        [HttpPost]
+        [Route("{id}", Name = RouteNameGetProductById)]
+        [HttpGet]
         [ResponseType(typeof(ProductResponse))]
-        public IHttpActionResult AddProduct([FromBody]AddProductRequest requestData)
+        public IHttpActionResult GetById(string id)
         {
-            //_logger.Info("Handling api request: create event subscription", requestData);
-
-            IHttpActionResult result=null;
-            try
-            {
-                //if(RequestValidator.Validate<AddProductRequest>(Request,requestData,new AddProductRequestValidator(),ref result))
-                //{
-
-                //}
-            }
-            catch
-            {
-
-            }
-            return result;
+            return null;
         }
+
+        //[HttpPost]
+        //[ResponseType(typeof(ProductResponse))]
+        //public IHttpActionResult AddProduct([FromBody]AddProductRequest requestData)
+        //{
+        //    //_logger.Info("Handling api request: create event subscription", requestData);
+
+        //    IHttpActionResult result = null;
+        //    try
+        //    {
+        //        //if(RequestValidator.Validate<AddProductRequest>(Request,requestData,new AddProductRequestValidator(),ref result))
+        //        //{
+
+        //        //}
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //    return result;
+        //}
     }
 }

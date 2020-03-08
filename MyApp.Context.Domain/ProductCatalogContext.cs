@@ -7,10 +7,10 @@ using System.Text;
 
 namespace MyApp.Context.Domain
 {
-    public class ProductCatelogContext : DbContext
+    public class ProductCatalogContext : DbContext
     {
 
-        public ProductCatelogContext(DbContextOptions<ProductCatelogContext> options) : base(options)
+        public ProductCatalogContext(DbContextOptions<ProductCatalogContext> options) : base(options)
         {
             //Created the database if not exists
             this.Database.EnsureCreated();
