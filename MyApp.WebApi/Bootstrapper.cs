@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using MyApp.Context.SimpleInjector;
-using MyApp.WebApi.Mapping;
 using SimpleInjector;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using SimpleInjector.Lifestyles;
@@ -21,7 +20,7 @@ namespace MyApp.WebApi
         public static void Bootstrap(this IServiceCollection services, Container container)
         {
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IControllerActivator>(
                 new SimpleInjectorControllerActivator(container));
@@ -49,20 +48,8 @@ namespace MyApp.WebApi
         public static void InitializeContainer(this IApplicationBuilder app,
            Container container, Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
-           //container.RegisterMvcControllers(app);
-
-            //container.CrossWire<IOptions<AppSettings>>(app);
 
             WebBootstrapper.Bootstrap(container);
-
-            // Automapper
-            container.RegisterSingleton(() => GetMapper(container));
-        }
-
-        private static AutoMapper.IMapper GetMapper(Container container)
-        {
-            var mp = container.GetInstance<MapperProvider>();
-            return mp.GetMapper();
         }
 
         public class WebBootstrapper
@@ -70,36 +57,10 @@ namespace MyApp.WebApi
             public static void Bootstrap(Container container)
             {
                 MyAppBootstrapper.Bootstrap(container, null, false);
-                // container.Verify();
+                 //container.Verify();
             }
         }
 
     }
-    public class MapperProvider
-    {
-        private readonly Container _container;
-
-        public MapperProvider(Container container)
-        {
-            _container = container;
-        }
-
-        public IMapper GetMapper()
-        {
-            var mce = new MapperConfigurationExpression();
-            mce.ConstructServicesUsing(_container.GetInstance);
-
-            mce.AddProfile(typeof(RequestMappingProfile));
-
-            mce.AddProfile(typeof(ResponseMappingProfile));
-
-            var mc = new MapperConfiguration(mce);
-
-            mc.AssertConfigurationIsValid();
-
-            IMapper m = new Mapper(mc, t => _container.GetInstance(t));
-
-            return m;
-        }
-    }
+    
 }

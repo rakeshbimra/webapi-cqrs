@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyApp.Context.Contract.CQRS\MyApp.Context.Contract.CQRS.csproj" />
+    <ProjectReference Include="..\MyApp.Context.Domain\MyApp.Context.Domain.csproj" />
   </ItemGroup>
 
 </Project>

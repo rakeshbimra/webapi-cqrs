@@ -14,11 +14,14 @@ namespace MyApp.WebApi.RequestValidators
             RuleFor(x => x.Name)
                 .NotNull()
                 .NotEmpty()
+                .WithMessage("Product name is required")
                 .Length(0, 200);
 
             RuleFor(x => x.Description)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty()
+                .WithMessage("Product description is required.");
+
 
             RuleFor(x => x.Price)
                 .NotNull();

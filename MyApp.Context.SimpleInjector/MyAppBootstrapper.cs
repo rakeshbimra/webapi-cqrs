@@ -22,15 +22,17 @@ namespace MyApp.Context.SimpleInjector
 
             container.Register(typeof(IRepository<>), typeof(Repository<>).Assembly);
 
-            container.Register<IUnitOfWork, UnitOfWork<ProductCatalogContext>>();
+            container.Register<IUnitOfWork, UnitOfWork<ProductCatalogContext>>(Lifestyle.Scoped);
 
-            
+            //container.Register<ProductCatalogContext>(() =>
+            //{
+            //    var options = new DbContextOptions<ProductCatalogContext>();
+            //    return new ProductCatalogContext(options);
+            //});
 
-            container.Register<ProductCatalogContext>(() =>
-            {
-                var options = new DbContextOptions<ProductCatalogContext>();
-                return new ProductCatalogContext(options);
-            });
+            container.Register<ProductCatalogContext>(Lifestyle.Scoped);
+
+           
 
             List<Assembly> myContextAssemlies = new List<Assembly>
                 {

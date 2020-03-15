@@ -18,6 +18,8 @@ using MyApp.WebApi.RequestValidators;
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Context.Contract.CQRS.Exceptions;
 using MyApp.WebApi.Contract.Results;
+using AutoMapper;
+using MyApp.WebApi.Mappers;
 
 namespace MyApp.WebApi.Controllers
 {
@@ -27,17 +29,19 @@ namespace MyApp.WebApi.Controllers
         private static ILog _logger = LogManager.GetLogger(typeof(ProductController));
         private const string RouteNameGetProductById = "GetProductById";
         private const string RouteNameAddProduct = "AddProduct";
-        private IQueryHandler<RetrieveProductQuery, ProductDto> _retrieveProductQueryHandler;
-        private ICommandHandler<AddProductCommand> _addProductCommandHandler;
-
+        private readonly IQueryHandler<RetrieveProductQuery, ProductDto> _retrieveProductQueryHandler;
+        private readonly  ICommandHandler<AddProductCommand> _addProductCommandHandler;
+        
         public ProductController(IQueryHandler<RetrieveProductQuery, ProductDto> retrieveProductQueryHandler,
-            ICommandHandler<AddProductCommand> addProductCommandHandler)
+            ICommandHandler<AddProductCommand> addProductCommandHandler
+            )
         {
             if (retrieveProductQueryHandler == null) throw new ArgumentNullException("Retrieve product query handler cannot be passed null");
             if (addProductCommandHandler == null) throw new ArgumentNullException("Add product command handler cannot be passed null");
 
             _retrieveProductQueryHandler = retrieveProductQueryHandler;
             _addProductCommandHandler = addProductCommandHandler;
+            
         }
 
         [HttpGet("{id}", Name = RouteNameGetProductById)]
@@ -54,7 +58,7 @@ namespace MyApp.WebApi.Controllers
         /// <returns></returns>
         [HttpPost("add", Name = RouteNameAddProduct)]
         [ResponseType(typeof(ProductResponse))]
-        public async Task<IActionResult> AddProduct([FromBody]AddProductRequest addProductRequest)
+        public IActionResult AddProduct([FromBody]AddProductRequest addProductRequest)
         {
             _logger.Info("Handling api request: create event subscription :" + addProductRequest);
 
@@ -63,6 +67,8 @@ namespace MyApp.WebApi.Controllers
             {
                 if (RequestValidator.Validate<AddProductRequest>(Request, addProductRequest, new AddProductRequestValidator(), ref result))
                 {
+                    var command = AddProductRequestMapper.ToCommand(addProductRequest);
+                    _addProductCommandHandler.Handle(command);
 
                 }
             }

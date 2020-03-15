@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyApp.Context.Domain.Model
 {
-    public class Product:IEntity<Guid>
+    public class Product
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

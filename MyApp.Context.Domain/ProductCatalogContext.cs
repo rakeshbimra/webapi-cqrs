@@ -13,7 +13,7 @@ namespace MyApp.Context.Domain
         public ProductCatalogContext(DbContextOptions<ProductCatalogContext> options) : base(options)
         {
             //Created the database if not exists
-            this.Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         public DbSet<Product> Product { get; set; }
