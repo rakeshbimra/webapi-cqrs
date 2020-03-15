@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -18,6 +20,6 @@ namespace MyApp.WebApi.Contract
         /// <param name="validator"></param>
         /// <param name="invalidResult"></param>
         /// <returns></returns>
-        bool Validate<T>(HttpRequestMessage httpRequest, T request, IValidator<T> validator, ref IHttpActionResult invalidResult) where T : class;
+        bool Validate<T>(HttpRequest httpRequest, T request, IValidator<T> validator, ref IActionResult invalidResult) where T : class;
     }
 }

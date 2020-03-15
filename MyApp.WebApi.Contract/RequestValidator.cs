@@ -1,4 +1,6 @@
 ﻿using log4net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MyApp.WebApi.Contract.Results;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace MyApp.WebApi.Contract
     {
         protected static ILog _logger = LogManager.GetLogger(typeof(RequestValidator));
 
-        public bool Validate<T>(HttpRequestMessage httpRequest, T request, FluentValidation.IValidator<T> validator, ref IHttpActionResult invalidResult) where T : class
+        public bool Validate<T>(HttpRequest httpRequest, T request, FluentValidation.IValidator<T> validator, ref IActionResult invalidResult) where T : class
         {
             bool result = false;
 

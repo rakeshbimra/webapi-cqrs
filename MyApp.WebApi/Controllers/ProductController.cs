@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
+using System.Net.Http;
 using System.Web.Http.Description;
 using log4net;
 using Microsoft.AspNetCore.Http;
@@ -15,18 +15,20 @@ using MyApp.Context.CQRS.Queries;
 using MyApp.WebApi.Contract.Requests;
 using MyApp.WebApi.Contract.Response;
 using MyApp.WebApi.RequestValidators;
+using Microsoft.AspNetCore.Mvc;
+using MyApp.Context.Contract.CQRS.Exceptions;
+using MyApp.WebApi.Contract.Results;
 
 namespace MyApp.WebApi.Controllers
 {
     [Route("api/product")]
     public class ProductController : BaseController
     {
-        public const string RouteNameGetProductById = "GetProductById";
-
         private static ILog _logger = LogManager.GetLogger(typeof(ProductController));
-
-        internal IQueryHandler<RetrieveProductQuery, ProductDto> _retrieveProductQueryHandler;
-        internal ICommandHandler<AddProductCommand> _addProductCommandHandler;
+        private const string RouteNameGetProductById = "GetProductById";
+        private const string RouteNameAddProduct = "AddProduct";
+        private IQueryHandler<RetrieveProductQuery, ProductDto> _retrieveProductQueryHandler;
+        private ICommandHandler<AddProductCommand> _addProductCommandHandler;
 
         public ProductController(IQueryHandler<RetrieveProductQuery, ProductDto> retrieveProductQueryHandler,
             ICommandHandler<AddProductCommand> addProductCommandHandler)
@@ -38,33 +40,44 @@ namespace MyApp.WebApi.Controllers
             _addProductCommandHandler = addProductCommandHandler;
         }
 
-        [Route("{id}", Name = RouteNameGetProductById)]
-        [HttpGet]
+        [HttpGet("{id}", Name = RouteNameGetProductById)]
         [ResponseType(typeof(ProductResponse))]
-        public IHttpActionResult GetById(string id)
+        public System.Web.Http.IHttpActionResult GetById(string id)
         {
             return null;
         }
 
-        //[HttpPost]
-        //[ResponseType(typeof(ProductResponse))]
-        //public IHttpActionResult AddProduct([FromBody]AddProductRequest requestData)
-        //{
-        //    //_logger.Info("Handling api request: create event subscription", requestData);
+        /// <summary>
+        /// Add Product
+        /// </summary>
+        /// <param name="addProductRequest"></param>
+        /// <returns></returns>
+        [HttpPost("add", Name = RouteNameAddProduct)]
+        [ResponseType(typeof(ProductResponse))]
+        public async Task<IActionResult> AddProduct([FromBody]AddProductRequest addProductRequest)
+        {
+            _logger.Info("Handling api request: create event subscription :" + addProductRequest);
 
-        //    IHttpActionResult result = null;
-        //    try
-        //    {
-        //        //if(RequestValidator.Validate<AddProductRequest>(Request,requestData,new AddProductRequestValidator(),ref result))
-        //        //{
+            IActionResult result = null;
+            try
+            {
+                if (RequestValidator.Validate<AddProductRequest>(Request, addProductRequest, new AddProductRequestValidator(), ref result))
+                {
 
-        //        //}
-        //    }
-        //    catch
-        //    {
+                }
+            }
+            catch (CommandNotValidException ex)
+            {
+                _logger.Warn("CommandNotValidException caught handling a AddProductCommand", ex);
+                result = new BadRequest(ex.ErrorMessages.ToList(), Request);
+            }
+            catch (CommandTimeoutException ex)
+            {
+                _logger.Warn("CommandTimeoutException caught handling a AddProductCommand", ex);
 
-        //    }
-        //    return result;
-        //}
+                //result = new GatewayTimeout(new List<string>() { "Upstream Timeout", ex.Message },new HttpRequestMessage());
+            }
+            return result;
+        }
     }
 }

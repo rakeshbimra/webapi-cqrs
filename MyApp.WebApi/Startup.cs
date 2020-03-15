@@ -28,7 +28,10 @@ namespace MyApp.WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            //services.AddControllers();
 
             services.Bootstrap(container);
         }
@@ -40,15 +43,14 @@ namespace MyApp.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
 
 
             app.InitializeContainer(container, Configuration);

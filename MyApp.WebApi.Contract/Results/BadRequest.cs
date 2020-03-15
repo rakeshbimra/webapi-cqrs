@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,22 +9,25 @@ using System.Web.Http;
 
 namespace MyApp.WebApi.Contract.Results
 {
-    public class BadRequest : IHttpActionResult
+    public class BadRequest : IActionResult
     {
         readonly Error _error;
-        readonly HttpRequestMessage _request;
+        readonly HttpRequest _request;
 
-        public BadRequest(List<string> messages, HttpRequestMessage request)
+        public BadRequest(List<string> messages, HttpRequest request)
         {
             _error = Error.CreateBadRequestError(messages);
             _request = request;
         }
 
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
+        public async Task ExecuteResultAsync(ActionContext context)
         {
-            var response = _request.CreateResponse<Error>((System.Net.HttpStatusCode)_error.HttpStatusCode, _error);
-
-            return Task.FromResult(response);
+            var objectResult = new ObjectResult(_error)
+            {
+                StatusCode=_error.HttpStatusCode,
+                Value=_error
+            };
+            await objectResult.ExecuteResultAsync(context);
         }
     }
 }
